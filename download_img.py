@@ -25,7 +25,7 @@ def send_file_to_channel(bot_token, channel_username, file_path, caption=""):
     except Exception as e:
         print("Error:", e)
 
-
+os.makedirs("png")
 # Set the range of image IDs you want to download
 for i in range(7, 999999, 1):
     bot_token = os.environ["bot_token"]

@@ -25,9 +25,10 @@ def send_file_to_channel(bot_token, channel_username, file_path, caption=""):
     except Exception as e:
         print("Error:", e)
 
-os.makedirs("png")
+
+os.makedirs("png", exist_ok=True)
 # Set the range of image IDs you want to download
-for i in range(2617, 6000, 1):
+for i in range(6000, 9090, 1):
     bot_token = os.environ["bot_token"]
     chat_id = "-1002165985535"
     url = f"https://v2static.nogifes.jp/resource/Background/Photo/photo_common_{i:05d}.png"

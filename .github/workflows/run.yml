@@ -1,0 +1,51 @@
+name: download
+
+on:
+  # schedule:
+  #   - cron: '20,50 * * * *'
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8' # Specify the Python version you need
+
+    # - name: OpenVPN
+    #   run: |
+    #     date
+    #     bash -c "$IP_COMMAND"
+    #     date
+    #     sudo apt update
+    #     sudo apt install -y openvpn openvpn-systemd-resolved
+    #     sudo openvpn --config ./cron/ovpn.ovpn --auth-user-pass ./cron/ovpn.auth --daemon
+    #     sleep 60
+    #     date
+    #     bash -c "$IP_COMMAND"
+    #     date
+    #   env:
+    #       IP_COMMAND: ${{ secrets.IP_COMMAND }}
+    
+    - name: Run Python script
+      run: |
+        pip install requests
+        python cron/script.py
+      env:
+          bot_token: ${{ secrets.bot_token }}
+          
+
+    - name: Stop OpenVPN
+      run: |
+        date
+        sudo killall openvpn || date
+        date

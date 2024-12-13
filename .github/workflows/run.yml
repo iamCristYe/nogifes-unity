@@ -39,7 +39,7 @@ jobs:
     - name: Run Python script
       run: |
         pip install requests
-        python cron/script.py
+        python download_img.py
       env:
           bot_token: ${{ secrets.bot_token }}
           

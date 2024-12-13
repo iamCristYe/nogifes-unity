@@ -51,9 +51,9 @@ for i in range(7, 999999, 1):
             # Save the image to a local file
             with open("png/" + file_name, "wb") as file:
                 file.write(response.content)
-            print(f"Downloaded {file_name}")
+                print(f"Downloaded {file_name}")
 
-            send_file_to_channel(bot_token, chat_id, "png/" + file_name)
+                send_file_to_channel(bot_token, chat_id, "png/" + file_name)
         else:
             print(f"Image not found for ID {i}, skipping.")
 
